@@ -8,8 +8,15 @@ import {
 import SideBtn from "../SideBtn/SideBtn";
 import LabelSection from "../LabelSection/LabelSection";
 
-function SideBar() {
+function SideBar({
+  labels,
+  filterByLabelEvent,
+}: {
+  labels: string[] | null | undefined;
+  filterByLabelEvent: (label: string) => void;
+}) {
   const iconClassName = "size-7! inline-block ml-4";
+
   return (
     <>
       {/* side bar static buttons */}
@@ -30,7 +37,10 @@ function SideBar() {
           icon={<DocumentCheckIcon className={iconClassName} />}
           text="Completed Task"
         />
-        <LabelSection fakeLabelData={["one", "two", "three", "four", "five"]} />
+        <LabelSection
+          filterByLabelEvent={filterByLabelEvent}
+          labelData={labels}
+        />
       </section>
     </>
   );

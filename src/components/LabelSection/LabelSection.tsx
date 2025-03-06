@@ -2,16 +2,15 @@ import { TagIcon } from "@heroicons/react/24/solid";
 import SideBtn from "../SideBtn/SideBtn";
 import NewLabelDialog from "../NewLabelDialog/NewLabelDialog";
 
-function LabelSection({ fakeLabelData }: { fakeLabelData: string[] }) {
+function LabelSection({
+  labelData,
+  filterByLabelEvent,
+}: {
+  labelData: string[] | null | undefined;
+  filterByLabelEvent: (label: string) => void;
+}) {
   return (
-    <section className="mt-1">
-      {fakeLabelData.map((label, index) => (
-        <SideBtn
-          key={index}
-          icon={<TagIcon className="w-7! h-7! inline-block ml-4" />}
-          text={label}
-        />
-      ))}
+    <section>
       <NewLabelDialog
         triggerChild={
           <SideBtn
@@ -21,6 +20,14 @@ function LabelSection({ fakeLabelData }: { fakeLabelData: string[] }) {
           />
         }
       />
+      {labelData?.map((label, index) => (
+        <SideBtn
+          clickHandler={() => filterByLabelEvent(label)}
+          key={index}
+          icon={<TagIcon className="w-7! h-7! inline-block ml-4" />}
+          text={label}
+        />
+      ))}
     </section>
   );
 }

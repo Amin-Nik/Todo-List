@@ -1,11 +1,14 @@
-import Header from "@/components/Header/Header";
-import Main from "@/components/Main/Main";
+import HomeContainer from "@/components/HomeContainer/HomeContainer";
+import { GetUser, GetTask } from "@/utils/action";
 
-export default function Home() {
+export default async function Home() {
+  const tasks = await GetTask();
+  const user = await GetUser();
+  // await PostTask();
+  // await PostUser();
   return (
     <>
-      <Header />
-      <Main />
+      <HomeContainer user={user} tasks={tasks} />
     </>
   );
 }
