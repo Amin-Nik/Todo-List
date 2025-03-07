@@ -1,6 +1,7 @@
 import { TagIcon } from "@heroicons/react/24/solid";
 import SideBtn from "../SideBtn/SideBtn";
 import NewLabelDialog from "../NewLabelDialog/NewLabelDialog";
+import { Button } from "../ui/button";
 
 function LabelSection({
   labelData,
@@ -13,11 +14,10 @@ function LabelSection({
     <section>
       <NewLabelDialog
         triggerChild={
-          <SideBtn
-            icon={<TagIcon className="w-7! h-7! inline-block ml-4" />}
-            text="Add New Label"
-            addNew={true}
-          />
+          <Button className="w-full h-12 rounded-r-full justify-start gap-8 border-y-2 border-r-2 border-dashed border-white my-1">
+            <TagIcon className="w-7! h-7! inline-block ml-4" />
+            Add New Label
+          </Button>
         }
       />
       {labelData?.map((label, index) => (
