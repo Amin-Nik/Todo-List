@@ -12,7 +12,7 @@ function SideBar({
   labels,
   filterByLabelEvent,
 }: {
-  labels: string[] | null | undefined;
+  labels: string[];
   filterByLabelEvent: (label: string) => void;
 }) {
   const iconClassName = "size-7! inline-block ml-4";

@@ -7,12 +7,13 @@ function LabelSection({
   labelData,
   filterByLabelEvent,
 }: {
-  labelData: string[] | null | undefined;
+  labelData: string[];
   filterByLabelEvent: (label: string) => void;
 }) {
   return (
     <section>
       <NewLabelDialog
+        labelData={labelData}
         triggerChild={
           <Button className="w-full h-12 rounded-r-full justify-start gap-8 border-y-2 border-r-2 border-dashed border-white my-1">
             <TagIcon className="w-7! h-7! inline-block ml-4" />

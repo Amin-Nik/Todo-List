@@ -7,7 +7,7 @@ function HomeContainer({
   user,
 }: {
   tasks: Task[] | undefined;
-  user: User | null | undefined;
+  user: User;
 }) {
   return (
     <>

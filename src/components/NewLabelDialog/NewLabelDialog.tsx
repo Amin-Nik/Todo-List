@@ -1,3 +1,4 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -11,8 +12,27 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { addNewLabel } from "./action";
+import { useState } from "react";
+import { LoaderCircle } from "lucide-react";
 
-function NewLabelDialog({ triggerChild }: { triggerChild: React.ReactNode }) {
+function NewLabelDialog({
+  triggerChild,
+  labelData,
+}: {
+  triggerChild: React.ReactNode;
+  labelData: string[];
+}) {
+  const [newLabel, setNewLabel] = useState("");
+  const [btnLoadingState, setBtnLoadingState] = useState(false);
+
+  const handleClick = async () => {
+    setBtnLoadingState(true);
+    await addNewLabel(labelData, newLabel);
+    setNewLabel("");
+    setBtnLoadingState(false);
+  };
+
   return (
     <Dialog>
       <DialogTrigger asChild>{triggerChild}</DialogTrigger>
@@ -26,14 +46,27 @@ function NewLabelDialog({ triggerChild }: { triggerChild: React.ReactNode }) {
             <Label htmlFor="name" className="text-right">
               Name
             </Label>
-            <Input id="name" placeholder="New Label 1" className="col-span-3" />
+            <Input
+              onChange={(e) => setNewLabel(e.target.value)}
+              value={newLabel}
+              id="name"
+              placeholder="New Label 1"
+              className="col-span-3"
+            />
           </div>
         </div>
         <DialogFooter>
           <DialogClose asChild>
             <Button variant={"destructive"}>Cancel</Button>
           </DialogClose>
-          <Button>Save</Button>
+          {btnLoadingState ? (
+            <Button disabled>
+              <LoaderCircle className="animate-spin" />
+              please wait...
+            </Button>
+          ) : (
+            <Button onClick={handleClick}>Save</Button>
+          )}
         </DialogFooter>
       </DialogContent>
     </Dialog>

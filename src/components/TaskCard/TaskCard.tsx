@@ -21,8 +21,8 @@ function TaskCard({ data }: { data: Task | undefined }) {
   return (
     <Card className="min-w-64 max-w-64 h-fit gap-4 py-2">
       <CardHeader className="mt-1 gap-2">
-        <CardTitle className="truncate">{data?.title}</CardTitle>
-        <CardDescription className="h-14 line-clamp-3">
+        <CardTitle className="h-5 truncate">{data?.title}</CardTitle>
+        <CardDescription className="min-h-fit max-h-14 line-clamp-3">
           {data?.description}
         </CardDescription>
       </CardHeader>
